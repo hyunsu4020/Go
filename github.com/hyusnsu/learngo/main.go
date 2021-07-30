@@ -1,16 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
 
-func superAdd(numbers ...int) int {
-	total := 0
-	for _, number := range numbers {
-		total += number
-	}
-	return total
-}
+	"github.com/hyusnsu/learngo/accounts"
+)
 
 func main() {
-	result := superAdd(1, 2, 3, 4, 5, 6)
-	fmt.Println(result)
+	account := accounts.NewAccount("nico")
+	account.Deposit(10)
+	fmt.Println(account.Balance())
+	err := account.Withdraw(20)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(account.Balance())
 }
